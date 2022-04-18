@@ -6,9 +6,9 @@
             $this->db =$conn;
         }
 //    FUNCTION FOR CREATING MEMBERS
-        public function createMember ($fname, $lname, $dob, $spes, $email, $phone){
+        public function createMember ($fname, $lname, $dob, $spes,$avatar_path ,$email, $phone){
             try{
-                $sql="INSERT INTO `Attendee` (`firstname`, `lastname`,  `dob`, `specilities_id`, `email`,`phone`) VALUES (:fname, :lname, :dob, :spes, :email, :phone)";
+                $sql="INSERT INTO `Attendee` (`firstname`, `lastname`,  `dob`, `specilities_id`, `avatar_path`, `email`,`phone`) VALUES (:fname, :lname, :dob, :spes,:avatar_path ,:email, :phone)";
                 
                 $stmt=$this->db->prepare($sql);
 
@@ -16,6 +16,7 @@
                 $stmt->bindparam(':lname',$lname);
                 $stmt->bindparam(':dob',$dob);
                 $stmt->bindparam(':spes',$spes);
+                $stmt->bindparam('avatar_path',$avatar_path);
                 $stmt->bindparam(':email',$email);
                 $stmt->bindparam(':phone',$phone);
 
@@ -69,7 +70,7 @@
             return false;
     }
     }
-      public function updateMemberDetails($id,$fname, $lname, $dob, $spes, $email, $phone){
+      public function updateMemberDetails($id,$fname, $lname, $dob, $spes,$email, $phone){
         try{ 
                 $sql = "UPDATE `Attendee` SET `firstname`=:fname,`lastname`=:lname,`dob`=:dob,`specilities_id`=:spes, `email`=:email,`phone`=:phone WHERE addendee_id = :id ";
                 $stmt = $this->db->prepare($sql);

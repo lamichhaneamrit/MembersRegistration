@@ -11,8 +11,14 @@ if (isset($_POST["submit"])){
     $email=$_POST["email"];
     $phone=$_POST["phone"];
 
-
-    $isSuccess=$crud->createMember ($fname,$lname,$dob,$spes,$email, $phone);
+//  file uploaded stuffs after here
+    $orig_file=$_FILES['avatar']['tmp_name'];
+    $ext =pathinfo($_FILES['avatar']['name'],PATHINFO_EXTENSION);
+    $target_dir ='uploads/';
+    $destination = "$target_dir$phone.$ext";
+    move_uploaded_file($orig_file,$destination);
+    
+    $isSuccess=$crud->createMember ($fname,$lname,$dob,$spes, $destination,$email, $phone);
 
     if($isSuccess){
               include 'includes/successmessage.php';
@@ -30,6 +36,9 @@ if (isset($_POST["submit"])){
 
 
 <!-- First Trying with GET METHODS and then changing to Post afterwards  -->
+
+
+<img src="<?php echo $destination;?>" class="rounded-circle" style="width:50%; height:50%" />
 <div class='card' style="width:18rem">
     <div class="card-body">
         <h5 class="card-title">

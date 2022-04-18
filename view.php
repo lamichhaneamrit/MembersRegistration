@@ -1,6 +1,8 @@
 <?php 
    $title='view records';
      require_once 'includes/header.php';
+    require_once 'includes/auth_check.php';
+
      require_once 'db/conn.php';
     //  
     if (isset($_GET['id'])){
@@ -8,11 +10,15 @@
         $result=$crud->getMemberDetails($id);
         
     }else {
-                include 'includes/errormessage.php';
+            include 'includes/errormessage.php';
             header ('Location:viewrecords.php');
 
     }
 ?>
+
+<img src="<?php echo empty($result['avatar_path']) ? "uploads/blank.png" :$result['avatar_path'] ; ?>"
+    class="rounded-circle" style="width:50%; height:50%" />
+
 <div class='card' style="width:18rem">
     <div class="card-body">
         <h5 class="card-title">

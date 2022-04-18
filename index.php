@@ -12,7 +12,7 @@ $results=$crud->getSpecialty();
 <div class="container">
     <h1 class='text-center'>Registration form IT Conference</h1>
 
-    <form action='success.php' method="POST">
+    <form action='success.php' enctype="multipart/form-data" method="POST">
         <div class="form-group">
             <label for="FirstName">First Name</label>
             <input required type="text" class="form-control" id="FirstName" name="fname" placeholder="Enter First Name">
@@ -48,6 +48,12 @@ $results=$crud->getSpecialty();
         <div class="form-group">
             <label for="phone">Contact Number</label>
             <input required type="text" class="form-control" id="phone" name="phone" placeholder="Enter phone">
+
+        </div>
+        <div class="custom-file">
+            <input type="file" accept="image/*" class="custom-file-input" id="avatar" name="avatar">
+            <label class="custom-file-label" for="avatar">Choose File</label>
+            <small id="avatar" class="form-text text-danger"> File Upload is Optional</small>
 
         </div>
 
